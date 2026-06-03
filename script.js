@@ -53,7 +53,7 @@ const products = [
     category: "Vape jetable",
     description: "Modèle longue durée avec design moderne et saveurs intenses.",
     price: 35,
-    image: "images/vozol-rave-40k.png",
+    image: "https://media.vaping360.com/images/vozol-rave-40000-efcdbd2e.webp?imageType=Standard&MaxWidth=500&MaxHeight=500",
     colors: ["#e7f1ff", "#ffffff"],
     stock: "En stock",
     stockClass: "in-stock",
