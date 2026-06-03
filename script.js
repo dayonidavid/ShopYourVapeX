@@ -270,11 +270,11 @@ function closeProductModal() {
 function hideAgeModal() {
   ageModal.classList.add("hidden");
   document.body.classList.remove("modal-open");
-  localStorage.setItem("kinvape-age-verified", "true");
+  localStorage.setItem("shopyourvapex-age-verified", "true");
 }
 
 function initAgeGate() {
-  const verified = localStorage.getItem("kinvape-age-verified") === "true";
+  const verified = localStorage.getItem("shopyourvapex-age-verified") === "true";
 
   if (verified) {
     hideAgeModal();
@@ -304,7 +304,7 @@ function buildOrderMessage() {
     .map((item) => `- ${item.name} x${item.quantity} - ${formatPrice(item.subtotal)}`)
     .join("\n");
 
-  return `🛒 Nouvelle commande KinVape
+  return `🛒 Nouvelle commande ShopYourVapeX
 
 Client : ${document.querySelector("#customerName").value}
 Téléphone : ${document.querySelector("#customerPhone").value}
