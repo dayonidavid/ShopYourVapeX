@@ -97,8 +97,7 @@ const products = [
   },
 ];
 
-const businessWhatsAppNumber = "12078997457";
-const deliveryDriverPhoneNumber = "+243 000 000 000";
+const businessWhatsAppNumber = "12078767674";
 const cart = new Map();
 
 const ageModal = document.querySelector("#ageModal");
@@ -316,7 +315,6 @@ Articles: ${count}
 Total: ${formatPrice(total)}
 Moyen de paiement: ${getSelectedPaymentMethod()}
 Numéro mobile money: ${document.querySelector("#paymentPhone").value}
-Téléphone du livreur: ${deliveryDriverPhoneNumber}
 Confirmation d'âge: ${document.querySelector("#ageConfirm").value}
 
 Merci de confirmer la disponibilité, les frais de livraison et les instructions de paiement.`;
