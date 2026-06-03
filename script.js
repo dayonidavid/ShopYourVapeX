@@ -295,36 +295,41 @@ function closeCheckoutModal() {
 }
 
 function buildOrderMessage() {
-  const { total, count } = getCartStats();
+  const { total } = getCartStats();
+
   const lines = getCartLines()
     .map((item) => `- ${item.name} x${item.quantity} - ${formatPrice(item.subtotal)}`)
     .join("\n");
 
-  return `Nouvelle commande KinVape
+  return `🛒 Nouvelle commande KinVape
 
-Client: ${document.querySelector("#customerName").value}
-Téléphone: ${document.querySelector("#customerPhone").value}
-Ville: ${document.querySelector("#customerCity").value}
-Commune / Quartier: ${document.querySelector("#customerArea").value}
-Adresse: ${document.querySelector("#customerAddress").value}
+Client : ${document.querySelector("#customerName").value}
+Téléphone : ${document.querySelector("#customerPhone").value}
 
-Produits:
+📍 Livraison
+Ville : ${document.querySelector("#customerCity").value}
+Quartier : ${document.querySelector("#customerArea").value}
+Adresse : ${document.querySelector("#customerAddress").value}
+
+🛍️ Produits commandés
 ${lines}
 
-Articles: ${count}
-Total: ${formatPrice(total)}
-Moyen de paiement: ${getSelectedPaymentMethod()}
-Numéro mobile money: ${document.querySelector("#paymentPhone").value}
-Confirmation d'âge: ${document.querySelector("#ageConfirm").value}
+💰 Total : ${formatPrice(total)}
+Mode de paiement : ${getSelectedPaymentMethod()}
+Numéro Mobile Money : ${document.querySelector("#paymentPhone").value}
 
-Merci de confirmer la disponibilité, les frais de livraison et les instructions de paiement.`;
+✅ Confirmation d'âge : ${document.querySelector("#ageConfirm").value}
+
+Merci de confirmer la disponibilité des produits, les frais de livraison et les instructions de paiement.`;
 }
 
 function openWhatsAppOrder() {
   const orderMessage = encodeURIComponent(buildOrderMessage());
-  window.open(`https://wa.me/${businessWhatsAppNumber}?text=${orderMessage}`, "_blank");
+  window.open(
+    `https://wa.me/${businessWhatsAppNumber}?text=${orderMessage}`,
+    "_blank"
+  );
 }
-
 productsGrid.addEventListener("click", (event) => {
   const addButton = event.target.closest("[data-product]");
   const detailButton = event.target.closest("[data-detail]");
