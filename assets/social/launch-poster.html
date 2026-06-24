@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ShopYourVapeX - Site en ligne</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1350px;
+        background: #081111;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .poster {
+        position: relative;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+        color: #f8fffd;
+        background:
+          radial-gradient(circle at 12% 12%, rgba(56, 232, 207, 0.28), transparent 28%),
+          radial-gradient(circle at 86% 18%, rgba(56, 232, 207, 0.2), transparent 26%),
+          radial-gradient(circle at 78% 88%, rgba(255, 255, 255, 0.1), transparent 24%),
+          linear-gradient(145deg, #061010 0%, #0b1717 48%, #112622 100%);
+      }
+
+      .poster::before {
+        content: "";
+        position: absolute;
+        inset: 42px;
+        border: 2px solid rgba(56, 232, 207, 0.28);
+        border-radius: 36px;
+      }
+
+      .logo {
+        position: absolute;
+        top: 36px;
+        left: 410px;
+        width: 260px;
+        height: 260px;
+        object-fit: contain;
+        filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.44));
+      }
+
+      .brand {
+        position: absolute;
+        top: 292px;
+        left: 80px;
+        width: 920px;
+        margin: 0;
+        text-align: center;
+        font-size: 34px;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        position: absolute;
+        top: 350px;
+        left: 90px;
+        width: 900px;
+        margin: 0;
+        text-align: center;
+        font-size: 82px;
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        position: absolute;
+        top: 545px;
+        left: 132px;
+        width: 816px;
+        margin: 0;
+        text-align: center;
+        color: #b9d4d0;
+        font-size: 30px;
+        font-weight: 650;
+        line-height: 1.18;
+      }
+
+      .url {
+        position: absolute;
+        top: 662px;
+        left: 282px;
+        width: 516px;
+        height: 64px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+        color: #061010;
+        background: #38e8cf;
+        font-size: 32px;
+        font-weight: 900;
+      }
+
+      .product-stage {
+        position: absolute;
+        left: 92px;
+        top: 765px;
+        width: 896px;
+        height: 380px;
+        border: 1.5px solid rgba(56, 232, 207, 0.2);
+        border-radius: 34px;
+        background:
+          radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.16), transparent 42%),
+          rgba(255, 255, 255, 0.08);
+      }
+
+      .product {
+        position: absolute;
+        object-fit: contain;
+        filter: drop-shadow(0 32px 36px rgba(0, 0, 0, 0.35));
+      }
+
+      .vista {
+        left: 120px;
+        top: 842px;
+        width: 360px;
+        height: 260px;
+      }
+
+      .gear {
+        left: 390px;
+        top: 786px;
+        width: 280px;
+        height: 340px;
+      }
+
+      .watch {
+        left: 618px;
+        top: 785px;
+        width: 280px;
+        height: 340px;
+      }
+
+      .payments {
+        position: absolute;
+        left: 126px;
+        bottom: 132px;
+        width: 828px;
+        height: 56px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(56, 232, 207, 0.22);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        font-size: 23px;
+        font-weight: 800;
+      }
+
+      .fineprint {
+        position: absolute;
+        left: 110px;
+        bottom: 82px;
+        width: 860px;
+        margin: 0;
+        text-align: center;
+        color: #8fb1ad;
+        font-size: 24px;
+        font-weight: 650;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="poster" aria-label="Annonce ShopYourVapeX">
+      <img class="logo" src="../shop-your-vapex-logo.png" alt="ShopYourVapeX" />
+      <p class="brand">SHOPYOURVAPEX</p>
+      <h1>Notre site est en ligne</h1>
+      <p class="subtitle">Commandez vos vapes à Kinshasa sur shopyourvapex.com</p>
+      <div class="url">shopyourvapex.com</div>
+      <div class="product-stage"></div>
+      <img class="product vista" src="../products/vozol-vista-20k-watermelon-transparent.png" alt="" />
+      <img class="product gear" src="../products/vozol-gear-transparent.png" alt="" />
+      <img class="product watch" src="../products/vapewatch-30k-transparent.png" alt="" />
+      <div class="payments">M-Pesa +243 837 933 422 • Orange Money +243 892 379 019</div>
+      <p class="fineprint">Livraison disponible • Achat réservé aux 18+ uniquement</p>
+    </main>
+  </body>
+</html>
