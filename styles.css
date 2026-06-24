@@ -1,16 +1,16 @@
 :root {
   color-scheme: light;
-  --ink: #14202b;
-  --muted: #627485;
-  --line: #c6dce0;
-  --paper: #dff4ef;
+  --ink: #101617;
+  --muted: #637577;
+  --line: #c7e7e3;
+  --paper: #071111;
   --panel: #ffffff;
-  --teal: #1479d6;
-  --teal-dark: #0b4c8c;
-  --gold: #f6c542;
+  --teal: #24d8c7;
+  --teal-dark: #07877c;
+  --gold: #e8fff9;
   --coral: #d6293f;
-  --mint: #18a87d;
-  --shadow: 0 20px 55px rgba(20, 32, 43, 0.14);
+  --mint: #38e8cf;
+  --shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
 }
 
 * {
@@ -26,8 +26,9 @@ body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.72), transparent 28%),
-    linear-gradient(145deg, #d9f6f0 0%, #e8fbff 44%, #d8f2dc 100%);
+    radial-gradient(circle at 16% 8%, rgba(56, 232, 207, 0.22), transparent 30%),
+    radial-gradient(circle at 88% 0%, rgba(255, 255, 255, 0.12), transparent 26%),
+    linear-gradient(145deg, #061010 0%, #0b1717 48%, #112622 100%);
   animation: pageIn 650ms ease both;
 }
 
@@ -57,8 +58,9 @@ a {
   justify-content: space-between;
   gap: 18px;
   padding: 16px clamp(18px, 5vw, 72px);
-  border-bottom: 1px solid rgba(198, 220, 224, 0.86);
-  background: rgba(230, 250, 246, 0.9);
+  color: #f8fffd;
+  border-bottom: 1px solid rgba(56, 232, 207, 0.18);
+  background: rgba(6, 16, 16, 0.9);
   backdrop-filter: blur(14px);
 }
 
@@ -79,18 +81,18 @@ a {
   width: 50px;
   height: 50px;
   object-fit: contain;
-  filter: drop-shadow(0 12px 22px rgba(11, 76, 140, 0.22));
+  filter: drop-shadow(0 12px 22px rgba(56, 232, 207, 0.24));
 }
 
 .nav-links {
   display: flex;
   gap: 24px;
-  color: var(--muted);
+  color: rgba(248, 255, 253, 0.72);
   font-weight: 600;
 }
 
 .nav-links a:hover {
-  color: var(--teal-dark);
+  color: var(--mint);
 }
 
 .cart-pill {
@@ -99,17 +101,17 @@ a {
   gap: 10px;
   min-height: 40px;
   padding: 0 14px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(56, 232, 207, 0.26);
   border-radius: 999px;
-  color: var(--ink);
-  background: var(--panel);
+  color: #f8fffd;
+  background: rgba(255, 255, 255, 0.08);
   cursor: pointer;
   transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .cart-pill:hover {
-  border-color: rgba(20, 121, 214, 0.35);
-  box-shadow: 0 12px 28px rgba(20, 32, 43, 0.1);
+  border-color: rgba(56, 232, 207, 0.55);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
   transform: translateY(-1px);
 }
 
@@ -119,8 +121,8 @@ a {
   height: 26px;
   place-items: center;
   border-radius: 999px;
-  color: #fff;
-  background: var(--coral);
+  color: #061010;
+  background: var(--teal);
 }
 
 .hero {
@@ -132,11 +134,10 @@ a {
   padding: clamp(44px, 7vw, 90px) clamp(18px, 5vw, 72px);
   border-bottom: 1px solid var(--line);
   background:
-    radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.88), transparent 24%),
-    linear-gradient(120deg, rgba(20, 121, 214, 0.2), transparent 42%),
-    linear-gradient(300deg, rgba(24, 168, 125, 0.2), transparent 42%),
-    linear-gradient(0deg, rgba(246, 197, 66, 0.16), transparent 56%),
-    #dff4ef;
+    radial-gradient(circle at 84% 16%, rgba(56, 232, 207, 0.2), transparent 26%),
+    linear-gradient(120deg, rgba(36, 216, 199, 0.2), transparent 42%),
+    linear-gradient(300deg, rgba(255, 255, 255, 0.1), transparent 45%),
+    #071111;
 }
 
 .hero-copy {
@@ -162,6 +163,7 @@ a {
 
 .hero h2 {
   max-width: 820px;
+  color: #f8fffd;
   font-size: clamp(2.25rem, 7vw, 5.7rem);
   line-height: 0.97;
 }
@@ -169,7 +171,7 @@ a {
 .hero-copy > p:not(.eyebrow) {
   max-width: 630px;
   margin: 22px 0 0;
-  color: var(--muted);
+  color: rgba(248, 255, 253, 0.74);
   font-size: 1.08rem;
   line-height: 1.75;
 }
@@ -205,19 +207,20 @@ a {
 
 .btn.primary,
 .btn.checkout {
-  color: #fff;
+  color: #061010;
   background: linear-gradient(135deg, var(--teal), var(--teal-dark));
 }
 
 .btn.primary:hover,
 .btn.checkout:hover {
-  background: linear-gradient(135deg, #1787e8, #06427c);
+  background: linear-gradient(135deg, #38e8cf, #0aa196);
 }
 
 .btn.outline,
 .btn.ghost {
-  border: 1px solid var(--line);
-  background: #fff;
+  border: 1px solid rgba(56, 232, 207, 0.34);
+  color: var(--teal);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .hero-visual {
@@ -226,8 +229,9 @@ a {
   border-radius: 8px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 24% 25%, rgba(255, 255, 255, 0.9), transparent 25%),
-    linear-gradient(140deg, #d7efff, #ffffff 48%, #ffe399);
+    radial-gradient(circle at 30% 25%, rgba(56, 232, 207, 0.35), transparent 30%),
+    radial-gradient(circle at 80% 78%, rgba(255, 255, 255, 0.8), transparent 22%),
+    linear-gradient(140deg, #071010, #102826 52%, #36e6d3);
   box-shadow: var(--shadow);
   animation: riseIn 760ms ease 240ms both;
 }
@@ -253,9 +257,9 @@ a {
   bottom: 30px;
   width: min(260px, calc(100% - 60px));
   padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(56, 232, 207, 0.28);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   animation: riseIn 680ms ease 520ms both;
 }
@@ -276,8 +280,17 @@ a {
 .shop-layout {
   padding: clamp(42px, 6vw, 80px) clamp(18px, 5vw, 72px);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.18)),
-    #d9f1ec;
+    radial-gradient(circle at 14% 0%, rgba(56, 232, 207, 0.18), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+    #0d1919;
+}
+
+.shop-layout .section-head h2 {
+  color: #f8fffd;
+}
+
+.shop-layout .section-head .eyebrow {
+  color: var(--mint);
 }
 
 .section-head {
@@ -303,10 +316,10 @@ a {
 
 .product-card,
 .cart-summary {
-  border: 1px solid rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(56, 232, 207, 0.18);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 18px 45px rgba(20, 75, 83, 0.11);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
 }
 
 .product-card {
@@ -343,8 +356,8 @@ a {
 }
 
 .product-card:hover {
-  border-color: rgba(20, 121, 214, 0.34);
-  box-shadow: 0 26px 56px rgba(20, 75, 83, 0.18);
+  border-color: rgba(56, 232, 207, 0.48);
+  box-shadow: 0 26px 56px rgba(0, 0, 0, 0.24);
   transform: translateY(-5px);
 }
 
@@ -356,6 +369,7 @@ a {
   padding: 18px;
   background:
     radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.3) 38%, transparent 62%),
+    radial-gradient(circle at 16% 20%, rgba(56, 232, 207, 0.16), transparent 28%),
     linear-gradient(135deg, var(--card-a), var(--card-b));
 }
 
@@ -400,8 +414,8 @@ a {
 }
 
 .stock-badge.in-stock {
-  color: #0b694f;
-  background: rgba(24, 168, 125, 0.14);
+  color: #087065;
+  background: rgba(36, 216, 199, 0.16);
 }
 
 .stock-badge.low-stock {
@@ -415,8 +429,8 @@ a {
 }
 
 .stock-badge.sale-stock {
-  color: #0b4c8c;
-  background: rgba(20, 121, 214, 0.14);
+  color: #087065;
+  background: rgba(36, 216, 199, 0.16);
 }
 
 .product-info h3 {
@@ -489,11 +503,11 @@ a {
   min-height: 30px;
   padding: 0 11px;
   border-radius: 999px;
-  color: #fff;
-  background: linear-gradient(135deg, var(--coral), #ff7a45);
+  color: #061010;
+  background: linear-gradient(135deg, var(--mint), var(--teal-dark));
   font-size: 0.78rem;
   font-weight: 900;
-  box-shadow: 0 12px 24px rgba(214, 41, 63, 0.2);
+  box-shadow: 0 12px 24px rgba(36, 216, 199, 0.22);
 }
 
 .product-card.is-unavailable .product-art img {
@@ -510,8 +524,8 @@ a {
   min-height: 42px;
   min-width: 0;
   padding: 0 10px;
-  color: #fff;
-  background: linear-gradient(135deg, var(--ink), #0b4c8c);
+  color: #061010;
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
 }
 
 .add-btn:disabled {
@@ -567,7 +581,7 @@ a {
   gap: 12px;
   padding: 12px;
   border-radius: 8px;
-  background: #edf7ff;
+  background: #ecfbf8;
 }
 
 .qty-controls {
@@ -621,7 +635,7 @@ a {
 .payment-box {
   padding: 14px;
   border-radius: 8px;
-  background: #fff7d9;
+  background: #ecfbf8;
 }
 
 .payment-options {
@@ -672,12 +686,13 @@ a {
   justify-content: space-between;
   gap: 12px;
   padding: 24px clamp(18px, 5vw, 72px);
-  color: var(--muted);
-  border-top: 1px solid var(--line);
+  color: rgba(248, 255, 253, 0.68);
+  border-top: 1px solid rgba(56, 232, 207, 0.18);
+  background: #061010;
 }
 
 .site-footer strong {
-  color: var(--ink);
+  color: #f8fffd;
 }
 
 .trust-strip {
@@ -685,8 +700,8 @@ a {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   padding: 26px clamp(18px, 5vw, 72px);
-  background: #ffffff;
-  border-block: 1px solid var(--line);
+  background: #071010;
+  border-block: 1px solid rgba(56, 232, 207, 0.18);
 }
 
 .trust-item {
@@ -694,7 +709,9 @@ a {
   gap: 7px;
   padding: 18px;
   border-radius: 8px;
-  background: #f6fbfe;
+  color: #f8fffd;
+  border: 1px solid rgba(56, 232, 207, 0.16);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .trust-item span {
@@ -703,8 +720,8 @@ a {
   height: 42px;
   place-items: center;
   border-radius: 12px;
-  color: #fff;
-  background: linear-gradient(135deg, var(--teal), var(--coral));
+  color: #061010;
+  background: linear-gradient(135deg, var(--mint), var(--teal-dark));
   font-size: 0.78rem;
   font-weight: 900;
 }
@@ -715,7 +732,7 @@ a {
 
 .trust-item p {
   margin: 0;
-  color: var(--muted);
+  color: rgba(248, 255, 253, 0.72);
   font-size: 0.9rem;
   line-height: 1.45;
 }
@@ -726,11 +743,13 @@ a {
   gap: 28px;
   padding: clamp(42px, 6vw, 72px) clamp(18px, 5vw, 72px);
   color: #fff;
-  background: linear-gradient(135deg, #0b4c8c, #14202b);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(56, 232, 207, 0.18), transparent 28%),
+    linear-gradient(135deg, #050909, #0d2422 58%, #0fb7aa);
 }
 
 .business-info .eyebrow {
-  color: var(--gold);
+  color: var(--mint);
 }
 
 .business-info h2 {
@@ -753,7 +772,7 @@ a {
   display: grid;
   gap: 6px;
   padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(56, 232, 207, 0.2);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
 }
@@ -826,6 +845,7 @@ a {
   border-radius: 8px;
   background:
     radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.32) 38%, transparent 62%),
+    radial-gradient(circle at 16% 20%, rgba(56, 232, 207, 0.16), transparent 28%),
     linear-gradient(135deg, var(--card-a), var(--card-b));
 }
 
@@ -864,7 +884,7 @@ a {
   gap: 16px;
   padding: 12px;
   border-radius: 8px;
-  background: #edf7ff;
+  background: #ecfbf8;
 }
 
 .product-specs dt {
@@ -972,7 +992,7 @@ a {
 .form-grid textarea:focus,
 .form-grid select:focus {
   border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(20, 121, 214, 0.14);
+  box-shadow: 0 0 0 3px rgba(36, 216, 199, 0.16);
 }
 
 .form-grid textarea {
@@ -988,7 +1008,7 @@ a {
   padding: 14px;
   border-radius: 8px;
   color: var(--muted);
-  background: #fff7d9;
+  background: #ecfbf8;
   line-height: 1.5;
 }
 
