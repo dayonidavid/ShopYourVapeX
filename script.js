@@ -33,6 +33,13 @@ const products = [
     colors: ["#e7f1ff", "#ffffff"],
     stock: "En stock",
     stockClass: "in-stock",
+    flavors: [
+      "Strawmelon Peach",
+      "Love 777",
+      "Watermelon Razz Rancher",
+      "Strawberry Ice",
+      "Strawberry Mango",
+    ],
     specs: {
       Bouffées: "40.000",
       Nicotine: "5%",
