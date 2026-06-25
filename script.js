@@ -53,6 +53,17 @@ const products = [
     colors: ["#f1f7ff", "#ffffff"],
     stock: "En stock",
     stockClass: "in-stock",
+    flavors: [
+      "Blueberry",
+      "Strawmelon Peach",
+      "BlueRazz",
+      "Coconut Melt Magic",
+      "Mango Passion Tangerine",
+      "Mixed Berries",
+      "Strawberry Watermelon",
+      "Strawberry Banana",
+      "Strawberry Kiwi",
+    ],
     specs: {
       Bouffées: "50.000",
       Nicotine: "5%",
@@ -74,6 +85,10 @@ const products = [
     colors: ["#effdf3", "#ffffff"],
     stock: "Stock limité",
     stockClass: "low-stock",
+    flavors: [
+      "Blue Razz Ice",
+      "Strawberry Ice",
+    ],
     specs: {
       Bouffées: "30.000",
       Nicotine: "5%",
@@ -95,6 +110,12 @@ const products = [
     colors: ["#f2f5f7", "#ffffff"],
     stock: "En stock",
     stockClass: "in-stock",
+    flavors: [
+      "Watermelon Mint",
+      "Peach Berry",
+      "Kiwi Passion Fruit Guava",
+      "Blueberry Razz Lemon",
+    ],
     specs: {
       Bouffées: "50.000",
       Nicotine: "5%",
@@ -115,6 +136,13 @@ const products = [
     colors: ["#fff0f6", "#ffffff"],
     stock: "En stock",
     stockClass: "in-stock",
+    flavors: [
+      "Passion Fruit Raspberry Grape",
+      "Juicy Peach",
+      "Cherry Strawberry",
+      "Pineapple Mango Watermelon",
+      "Watermelon Ice",
+    ],
     specs: {
       Bouffées: "45.000",
       Nicotine: "5%",
@@ -136,6 +164,15 @@ const products = [
     colors: ["#fffceb", "#ffffff"],
     stock: "En stock",
     stockClass: "in-stock",
+    flavors: [
+      "Passion Fruit Ice",
+      "Virginia Blend",
+      "Grape Ice",
+      "Mango Oasis Ice",
+      "Straw Lush Ice",
+      "Watermelon Ice",
+      "Double Peach Ice",
+    ],
     specs: {
       Bouffées: "40.000",
       Nicotine: "2%",
@@ -234,6 +271,8 @@ const productModalTitle = document.querySelector("#productModalTitle");
 const productModalDescription = document.querySelector("#productModalDescription");
 const productModalPrice = document.querySelector("#productModalPrice");
 const productSpecs = document.querySelector("#productSpecs");
+const modalFlavorField = document.querySelector("#modalFlavorField");
+const modalFlavorSelect = document.querySelector("#modalFlavorSelect");
 const modalAddBtn = document.querySelector("#modalAddBtn");
 let selectedProductId = null;
 
@@ -242,6 +281,41 @@ function formatPrice(value) {
     style: "currency",
     currency: "USD",
   }).format(value);
+}
+
+function getFlavorOptions(product) {
+  if (!product.flavors?.length) return "";
+
+  return `
+    <label class="product-flavor">
+      <span>Saveur</span>
+      <select data-flavor-for="${product.id}">
+        <option value="">Choisir une saveur</option>
+        ${product.flavors.map((flavor) => `<option value="${flavor}">${flavor}</option>`).join("")}
+      </select>
+    </label>
+  `;
+}
+
+function makeCartKey(productId, flavor = "") {
+  return JSON.stringify({ productId, flavor });
+}
+
+function readCartKey(cartKey) {
+  return JSON.parse(cartKey);
+}
+
+function getSelectedProductFlavor(productId) {
+  return productsGrid.querySelector(`[data-flavor-for="${productId}"]`)?.value || "";
+}
+
+function getProductOrNull(productId) {
+  return products.find((item) => item.id === productId) || null;
+}
+
+function resolveFlavor(product, flavor) {
+  if (!product.flavors?.length) return "";
+  return flavor;
 }
 
 function renderProducts() {
@@ -268,6 +342,7 @@ function renderProducts() {
             <p>${product.description}</p>
             <div class="product-footer">
               ${priceMarkup}
+              ${getFlavorOptions(product)}
               <div class="product-actions">
                 <button class="detail-btn" type="button" data-detail="${product.id}">Détails</button>
                 <button class="btn add-btn" type="button" data-product="${product.id}" ${unavailable ? "disabled" : ""}>${unavailable ? "Indisponible" : "Ajouter"}</button>
@@ -285,8 +360,10 @@ function getCartStats() {
   let total = 0;
   let count = 0;
 
-  cart.forEach((quantity, productId) => {
-    const product = products.find((item) => item.id === productId);
+  cart.forEach((quantity, cartKey) => {
+    const { productId } = readCartKey(cartKey);
+    const product = getProductOrNull(productId);
+    if (!product) return;
     total += product.price * quantity;
     count += quantity;
   });
@@ -299,10 +376,12 @@ function getSelectedPaymentMethod() {
 }
 
 function getCartLines() {
-  return Array.from(cart.entries()).map(([productId, quantity]) => {
-    const product = products.find((item) => item.id === productId);
+  return Array.from(cart.entries()).map(([cartKey, quantity]) => {
+    const { productId, flavor } = readCartKey(cartKey);
+    const product = getProductOrNull(productId);
     return {
       name: product.name,
+      flavor,
       quantity,
       price: product.price,
       subtotal: product.price * quantity,
@@ -321,18 +400,22 @@ function renderCart() {
   }
 
   cartItems.innerHTML = Array.from(cart.entries())
-    .map(([productId, quantity]) => {
-      const product = products.find((item) => item.id === productId);
+    .map(([cartKey, quantity]) => {
+      const { productId, flavor } = readCartKey(cartKey);
+      const product = getProductOrNull(productId);
+      const encodedCartKey = encodeURIComponent(cartKey);
+      const flavorMarkup = flavor ? `<span class="cart-flavor">Saveur : ${flavor}</span>` : "";
       return `
         <div class="cart-line">
           <div>
             <strong>${product.name}</strong>
+            ${flavorMarkup}
             <span>${formatPrice(product.price)} chacun</span>
           </div>
           <div class="qty-controls" aria-label="Quantité pour ${product.name}">
-            <button type="button" data-decrease="${product.id}" aria-label="Réduire ${product.name}">-</button>
+            <button type="button" data-decrease="${encodedCartKey}" aria-label="Réduire ${product.name}">-</button>
             <span>${quantity}</span>
-            <button type="button" data-increase="${product.id}" aria-label="Ajouter ${product.name}">+</button>
+            <button type="button" data-increase="${encodedCartKey}" aria-label="Ajouter ${product.name}">+</button>
           </div>
           <strong>${formatPrice(product.price * quantity)}</strong>
         </div>
@@ -341,28 +424,41 @@ function renderCart() {
     .join("");
 }
 
-function addToCart(productId) {
-  const product = products.find((item) => item.id === productId);
-  if (!product || product.stockClass.includes("out-of-stock")) return;
+function addToCart(productId, flavor = "") {
+  const product = getProductOrNull(productId);
+  if (!product || product.stockClass.includes("out-of-stock")) return false;
 
-  cart.set(productId, (cart.get(productId) || 0) + 1);
+  const selectedFlavor = resolveFlavor(product, flavor);
+  if (product.flavors?.length && !selectedFlavor) {
+    alert("Veuillez choisir une saveur avant d'ajouter ce produit.");
+    return false;
+  }
+
+  const cartKey = makeCartKey(productId, selectedFlavor);
+  cart.set(cartKey, (cart.get(cartKey) || 0) + 1);
   renderCart();
+  return true;
 }
 
-function removeFromCart(productId) {
-  const quantity = cart.get(productId) || 0;
+function increaseCartItem(cartKey) {
+  const { productId, flavor } = readCartKey(cartKey);
+  addToCart(productId, flavor);
+}
+
+function removeFromCart(cartKey) {
+  const quantity = cart.get(cartKey) || 0;
 
   if (quantity <= 1) {
-    cart.delete(productId);
+    cart.delete(cartKey);
   } else {
-    cart.set(productId, quantity - 1);
+    cart.set(cartKey, quantity - 1);
   }
 
   renderCart();
 }
 
 function openProductModal(productId) {
-  const product = products.find((item) => item.id === productId);
+  const product = getProductOrNull(productId);
   selectedProductId = productId;
   productModalCategory.textContent = `${product.category} · ${product.stock}`;
   productModalTitle.textContent = product.name;
@@ -376,6 +472,16 @@ function openProductModal(productId) {
   productSpecs.innerHTML = Object.entries(product.specs)
     .map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`)
     .join("");
+  if (product.flavors?.length) {
+    modalFlavorField.classList.remove("hidden");
+    modalFlavorSelect.innerHTML = `
+      <option value="">Choisir une saveur</option>
+      ${product.flavors.map((flavor) => `<option value="${flavor}">${flavor}</option>`).join("")}
+    `;
+  } else {
+    modalFlavorField.classList.add("hidden");
+    modalFlavorSelect.innerHTML = "";
+  }
   const unavailable = product.stockClass.includes("out-of-stock");
   modalAddBtn.disabled = unavailable;
   modalAddBtn.textContent = unavailable ? "Indisponible" : "Ajouter au panier";
@@ -426,7 +532,10 @@ function buildOrderMessage() {
   const { total } = getCartStats();
 
   const lines = getCartLines()
-    .map((item) => `- ${item.name} x${item.quantity} - ${formatPrice(item.subtotal)}`)
+    .map((item) => {
+      const flavor = item.flavor ? ` (${item.flavor})` : "";
+      return `- ${item.name}${flavor} x${item.quantity} - ${formatPrice(item.subtotal)}`;
+    })
     .join("\n");
 
   return `🛒 Nouvelle commande ShopYourVapeX
@@ -463,7 +572,7 @@ productsGrid.addEventListener("click", (event) => {
   const detailButton = event.target.closest("[data-detail]");
 
   if (addButton) {
-    addToCart(addButton.dataset.product);
+    addToCart(addButton.dataset.product, getSelectedProductFlavor(addButton.dataset.product));
     return;
   }
 
@@ -488,12 +597,12 @@ cartItems.addEventListener("click", (event) => {
   const decreaseButton = event.target.closest("[data-decrease]");
 
   if (increaseButton) {
-    addToCart(increaseButton.dataset.increase);
+    increaseCartItem(decodeURIComponent(increaseButton.dataset.increase));
     return;
   }
 
   if (decreaseButton) {
-    removeFromCart(decreaseButton.dataset.decrease);
+    removeFromCart(decodeURIComponent(decreaseButton.dataset.decrease));
   }
 });
 
@@ -522,7 +631,8 @@ productModal.addEventListener("click", (event) => {
 
 modalAddBtn.addEventListener("click", () => {
   if (!selectedProductId) return;
-  addToCart(selectedProductId);
+  const added = addToCart(selectedProductId, modalFlavorSelect.value);
+  if (!added) return;
   closeProductModal();
   document.querySelector("#cart").scrollIntoView({ behavior: "smooth", block: "start" });
 });
