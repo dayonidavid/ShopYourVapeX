@@ -194,6 +194,16 @@ const products = [
     colors: ["#f6edff", "#ffffff"],
     stock: "En stock",
     stockClass: "in-stock",
+    flavors: [
+      "Miami Mint",
+      "Blueberry Ice",
+      "Peach Mango",
+      "Peach Green Grape",
+      "Cola Ice",
+      "Strawberry Kiwi Ice Cream",
+      "Kiwi Passion Fruit Guava",
+      "VCT",
+    ],
     specs: {
       Bouffées: "35.000",
       Nicotine: "5%",
